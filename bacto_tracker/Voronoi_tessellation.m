@@ -144,10 +144,10 @@ for i = 1:length(c)
         
         x = v(c{i},1);
         y = v(c{i},2);
-        A = log10(polyarea(x,y));
-        if A>=5
-            A = 5;
-        end
+        A = polyarea(x,y);
+%         if A>=5
+%             A = 5;
+%         end
         a = vertcat(a,A);
         patch(x,y,A);
 
@@ -179,10 +179,10 @@ for j = 1 : length(row)
         K = r(k);
         x = v(c{K},1);
         y = v(c{K},2);
-        A = log10(polyarea(x,y));
-                if A>=5
-            A = 5;
-        end
+        A = polyarea(x,y);
+%                 if A>=5
+%             A = 5;
+%         end
         b = vertcat(b,A);
         
     end
