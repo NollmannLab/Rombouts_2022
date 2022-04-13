@@ -21,7 +21,7 @@ cd('Tracking')
 Dir_save = pwd;
 cd(Dir_data)
 
-parfor k = 1 : NFiles-1
+parfor k = 300 : NFiles-1
 
     
     % Load in first frame for pairwise tracking by loading in the matfile
@@ -117,7 +117,8 @@ Filter_Track = dir('PW_Tracks_Filter*.mat');
 
 % 
 % [Full_Track_2, FullScore, FullTrack] = Track_reconstruction(Filter_Track);
-[Full_Track_2] = Track_reconstruction(Filter_Track);
+% [Full_Track_2] = Track_reconstruction(Filter_Track);
+[Full_Track_2] = function_trackreconstruction_20210201(Filter_Track);
 
 Name_FullTrack = strcat(Dir_save, '/FullTrack');
 Fieldname_FullTrack = strcat('FullTrack');

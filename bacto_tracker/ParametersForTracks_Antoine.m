@@ -6,7 +6,13 @@
 % ---------------------------------
 
 % Define the folder where the Analyzed data is saved
-Dir_data = uigetdir('/mnt/grey/','Select the folder where the analyzed data is saved.');
+% Dir_data = uigetdir('/mnt/grey/','Select the folder where the analyzed data is saved.');
+Dir_data ='/mnt/tronador/rawData_2021/Experiment_70_Sara_WT_cytosolicGFP/001_FastTimeLapse_RAMM_Test/Analyzed/';
+
+exportPath = '/mnt/tronador/AnalyzedData_2021/Experiment_70_Sara_WT_cytosolicGFP/'
+if ~exist(exportPath, 'dir')
+   mkdir(exportPath)
+end
 
 % Define where the data is stored
 Dir_tracks = strcat(Dir_data, '/Tracking');
@@ -122,7 +128,6 @@ for i = 1:size(Total_tracks,2)
     % Int Ec
     IntEc = Frame_EcParameters.Total_EC_Neighbors;
     IntEc = IntEc+1;
-    
     Final_IntEc = IntEc(CellID);
     
     % ClassEc
@@ -171,11 +176,52 @@ for i = 1:size(Total_tracks,2)
     
 end
 
+% 
+% Track_Densities = Total_Density;
+% Track_Densities = log10(Track_Densities);
+% Track_Densities(Track_Densities==-Inf)=0;
+% Track_Densities(Track_Densities>=3.5)=6;
+% Track_Densities(Track_Densities<=2.8 & Track_Densities~=0)=2;
+% Track_Densities(Track_Densities<=3.5 & Track_Densities>=2.8) = 4;
 
-Track_Densities = Total_Density;
-Track_Densities = log10(Track_Densities);
-Track_Densities(Track_Densities==-Inf)=0;
-Track_Densities(Track_Densities>=3.5)=6;
-Track_Densities(Track_Densities<=2.8 & Track_Densities~=0)=2;
-Track_Densities(Track_Densities<=3.5 & Track_Densities>=2.8) = 4;
 
+save(strcat(exportPath,'Total_Area.mat'),'Total_Area')
+save(strcat(exportPath,'Total_Density.mat'),'Total_Density')
+save(strcat(exportPath,'Total_Backbone.mat'),'Total_Backbone')
+save(strcat(exportPath,'Total_Flag.mat'),'Total_Flag')
+save(strcat(exportPath,'Total_Border.mat'),'Total_Border')
+save(strcat(exportPath,'Total_tracks.mat'),'Total_tracks')
+save(strcat(exportPath,'Total_Row.mat'),'Total_Row')
+save(strcat(exportPath,'Total_Col.mat'),'Total_Col')
+
+save(strcat(exportPath,'Total_IntEc.mat'),'Total_IntEc')
+save(strcat(exportPath,'Total_ClassEC.mat'),'Total_ClassEC')
+save(strcat(exportPath,'Total_MyxoNeighbors.mat'),'Total_MyxoNeighbors')
+save(strcat(exportPath,'Total_SizeMyxoNeighbors.mat'),'Total_SizeMyxoNeighbors')
+save(strcat(exportPath,'Total_DensityEc.mat'),'Total_DensityEc')
+save(strcat(exportPath,'Total_DensityEcMyxo.mat'),'Total_DensityEcMyxo')
+
+exportPath_tiff = strcat(exportPath,'tiff/')
+if ~exist(exportPath_tiff, 'dir')
+   mkdir(exportPath_tiff)
+end
+
+MX_01 = open('EC_Frame_001.mat');
+Im = labelmatrix(MX_01.EC_Frame_001);
+figure, imagesc(Im)
+imwrite(Im>0.5,strcat(exportPath_tiff,'EC_Frame_001.tiff'),'tiff');
+
+MX_01 = open('EC_Frame_700.mat');
+Im = labelmatrix(MX_01.EC_Frame_700);
+figure, imagesc(Im)
+imwrite(Im>0.5,strcat(exportPath_tiff,'EC_Frame_END.tiff'),'tiff');
+
+MX_01 = open('Frame_001.mat');
+Im = labelmatrix(MX_01.Frame_001);
+figure, imagesc(Im)
+imwrite(Im,strcat(exportPath_tiff,'Frame_001.tiff'),'tiff');
+
+MX_01 = open('Frame_700.mat');
+Im = labelmatrix(MX_01.Frame_700);
+figure, imagesc(Im)
+imwrite(Im,strcat(exportPath_tiff,'Frame_END.tiff'),'tiff');
