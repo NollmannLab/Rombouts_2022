@@ -1,4 +1,4 @@
-function [Cand,Cell] = parameter_retrieval(object, ObjectProps, LabelMatrix_K, ObjectProps_K)
+function [Cand,Cell] = parameter_retrieval(object, ObjectProps, Labelmatrix_K, ObjectProps_K)
 
 
 %% Function to select the candidates and retrieve their parameters
@@ -19,7 +19,7 @@ BB = ObjectProps.BoundingBox(object,:);
 BB_k = [BB(1,1)-5 BB(1,2)-5 BB(1,3)+10 BB(1,4)+10];
 
 % Find all objects in BB_k region in next frame K
-Crop = imcrop(LabelMatrix_K, BB_k);
+Crop = imcrop(Labelmatrix_K, BB_k);
 Candidates = unique(nonzeros(Crop));
 
 % Labelmatrix_object = LabelMatrix;

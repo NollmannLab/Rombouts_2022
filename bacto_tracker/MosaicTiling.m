@@ -11,6 +11,7 @@ function [Image, Overlap, Area_image] = MosaicTiling(Dir_data, Name, Name_CC, Da
 % Goal of code: function to tile the images (RAMM microscope) to mosaic of
 % 3x3. Overlap regions merged by Alpha decompositing.
 %
+% Adjusted 20210215: Tiling CC correction function implemented
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -39,6 +40,10 @@ if size(A,1)==24
     A = A(1:12,:)+A(13:24,:);
     
 end
+
+%% If necessary, Tiling CC correction
+A = CorrectionTiling(A);
+
 %% Reconstruct image
 
 % Load in the images
