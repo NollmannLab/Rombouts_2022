@@ -1,10 +1,6 @@
 # bacto_tracker
 
-This repository contains the code implemented to segment and track bacterial cells in crowded environments.
-
-Software packages were written by Sara Rombouts, Jean-Bernard Fiche and Marcelo Nollmann at the Center for Structural Biology, a joint Institute from the Centre National de la Recherche Scientifique (CNRS), the Institut National de la Sante et la Recherche Medicale (INSERM), and the University of Montpellier, France.
-
-Code used for the acquisition and analysis of HiM data are included in the `/src` folder.
+This software package implements bacterial cell segmentation and tracking in crowded environments.
 
 
 
@@ -36,6 +32,10 @@ These two collections of CSV files will be used by `loadDataMATLAB.py` to genera
 After this conversion is made, you will be able to calculate track properties, as in the example in this [Jupyter lab]().
 
 
+
+## Authors
+
+Software packages were written by Sara Rombouts, Jean-Bernard Fiche and Marcelo Nollmann at the Center for Structural Biology, a joint Institute from the Centre National de la Recherche Scientifique (CNRS), the Institut National de la Sante et la Recherche Medicale (INSERM), and the University of Montpellier, France.
 
 ## Contact
 
