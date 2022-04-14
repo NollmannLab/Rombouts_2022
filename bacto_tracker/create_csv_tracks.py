@@ -6,28 +6,21 @@ Created on Tue Oct 27 11:56:44 2020
 @author: marcnol
 """
 
-from scipy.io import loadmat
 import os
-import h5py
 import numpy as np
-from matplotlib.pylab import plt
 
 import glob
 import csv
-import os
 
-from matplotlib.pyplot import figure
 import matplotlib 
-matplotlib.rc('xtick', labelsize=15) 
-matplotlib.rc('ytick', labelsize=15) 
 
+
+# replace the following with the folders with your data
 rootFolder = '/home/marcnol/grey/rawData_2021/Experiment_50_Sara_WT/003_FastTimeLapse_RAMM_Test/Analyzed/'
-tracksFolder = rootFolder+'Track_IDs/'
-
-outputFigures = '/home/marcnol/gdrive/papers/2021.Methods_Sara/version_1/Figures/Figure_4/'
 
 #%% loads all tracks in CSV format
 
+tracksFolder = rootFolder+'Track_IDs/'
 files = [x for x in glob.glob(tracksFolder +'*.csv')]
 print(f'{len(files)} files to process')
 
@@ -83,6 +76,7 @@ for key,file in zip(keys,files):
 #%% builds tracks
 
 track_TXY = list()
+# track_TXY: each list item is an array with rows containing (frame number, x-centroid, y-centroid)
 
 # iterate over tracks
 for track in tracks:
@@ -98,57 +92,8 @@ for track in tracks:
         
     track_TXY.append(track_TXY_array)
 
+print('done')
     
-#%% calculates lengths
-
-track_lengths = list()
-dt = 1 # in frames
-for track in track_TXY:
-    track_lengths.append(dt*len(track))
-
-figure(figsize=(10, 8), dpi=300)
-plt.hist(track_lengths, bins=range(dt,100*dt,10*dt),alpha=.7, label='N='+str(len(track_TXY)))
-plt.xlabel('Track length, frames',fontsize = 20)
-plt.ylabel('Counts', fontsize = 20)
-plt.xlim([10,90])
-plt.legend(fontsize = 20)
-plt.savefig(outputFigures + "length_histogram.svg")
-
-#%% calculates speeds
-
-track_speeds = list()
-dt = 0.5 # in secs
-pixel_size = 0.1 # in microns
-
-for track in track_TXY[0:100]:
-    track_length = len(track)
-    for idx in range(track_length-1):
-        dx = track[idx,0] - track[idx+1,0]
-        dy = track[idx,1] - track[idx+1,1]        
-        v = pixel_size*np.sqrt( dx**2 + dy**2 )/dt
-        track_speeds.append(v)
-
-figure(figsize=(10, 8), dpi=300)
-plt.hist(track_speeds, bins=range(0,10),alpha=0.7, label='N='+str(len(track_TXY)))
-plt.xlabel('Velocity, microns / min',fontsize = 20)
-plt.ylabel('Counts',fontsize = 20)
-plt.xlim([0,10])
-plt.legend(fontsize = 20)
-plt.savefig(outputFigures + "speed_histogram.svg")
-
-
-#%% examples of some tracks
-figure(figsize=(10, 10), dpi=300)
-
-for track in track_TXY[0:1000]:
-    plt.plot(track[:,2],track[:,1],'-')
-
-plt.ylim([0,5600])
-plt.xlim([0,5600])
-plt.xlabel('x, px',fontsize = 20)
-plt.ylabel('y, px',fontsize = 20)
-plt.savefig(outputFigures + "trajectories.svg")
-
 #%% saves in csv format
 
 # track number, frame number, x centroid (px), y centroid (px)
@@ -165,3 +110,4 @@ myFile = open(rootFolder+'track_TXY.csv', 'w')
 with myFile:
    writer = csv.writer(myFile)
    writer.writerows(output_data)
+   
