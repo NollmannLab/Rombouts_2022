@@ -71,7 +71,7 @@ for key,file in zip(keys,files):
     mask_dict[key]={}
     mask_dict[key]['track_xy'] = track
     
-    print(f'loaded and processed file: {os.path.basename(file)} for key {key} with {number_points} data points')
+    print(f'loaded and processed file: {os.path.basename(file)} for key {key} with {number_points} data oints')
     
 #%% builds tracks
 
