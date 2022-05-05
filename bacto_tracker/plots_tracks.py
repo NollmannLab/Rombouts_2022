@@ -152,12 +152,12 @@ for track in track_TXY:
         v = pixel_size*np.sqrt( dx**2 + dy**2 )/dt
         if v>v_threshold:
             track_speeds.append(v)
-#%%
+
 bins = np.arange(0.5,10,0.1)
 figure(figsize=(10, 8), dpi=300)
 plt.hist(track_speeds, bins=bins,alpha=0.7, label='N='+str(len(track_speeds)))
-plt.xlabel('Velocity, microns / min',fontsize = 20)
-plt.ylabel('Counts',fontsize = 20)
+plt.xlabel('Velocity, microns / min',fontsize = 30)
+plt.ylabel('Counts',fontsize = 30)
 plt.xlim([np.min(bins),np.max(bins)])
 plt.legend(fontsize = 20)
 plt.savefig(outputFigures + "speed_histogram.svg")
