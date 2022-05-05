@@ -19,6 +19,7 @@ Track = Track.FullTrack;
 % ----------------------------------------
 Dir_parameter = strcat(Dir_data, '/Tiling_Drift_PostProcess');
 cd(Dir_parameter)
+
 % Count the number of files
 NFiles = size(dir('Frame*.mat'),1);
 
@@ -66,7 +67,6 @@ Total_DensityEcMyxo = zeros(size(Total_tracks,1), size(Total_tracks,2));
 
 
 for i = 1:size(Total_tracks,2)
-%     for i = 1:20
     CellID = nonzeros(Total_tracks(:,i));
     Loc_CellID = find(Total_tracks(:,i));
     
@@ -128,7 +128,7 @@ for i = 1:size(Total_tracks,2)
     % ClassEc
     ClassEC = Frame_EcParameters.Total_EC_class;
     ClassEC = cellfun(@sum, ClassEC);
-   ClassEC(ClassEC==0)=1;
+    ClassEC(ClassEC==0)=1;
    
     Final_ClassEC = ClassEC(CellID);
     

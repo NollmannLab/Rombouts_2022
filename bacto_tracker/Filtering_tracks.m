@@ -6,7 +6,7 @@
 
 % Filter for size: yes (=1) or no (=0), and for which size?
 Size = 1;
-Frames = 35;    % Minimal track length filter
+Frames = 10;    % Minimal track length filter
 
 % Filter for tracks where cell travels through an overlap region? If yes (=1) or no (=0)
 Overlap = 1;
@@ -24,9 +24,7 @@ Lengths = [];
 for i = 1: size(Total_tracks,1)
    A = size(nonzeros(Total_tracks(i,:)),1);
    Lengths = [Lengths;A];
-    
 end
-
 
 Filter_Size = Lengths>=Frames;
 Filter_Size = imcomplement(Filter_Size);

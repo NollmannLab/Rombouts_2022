@@ -16,10 +16,6 @@ proc hh:mm:ss {secs} {
 
 proc find_best_threshold { N_obj diff_thres} { 
 
-
-# set l { 1000 200 15 11 9 8 8 8}
-# set diff_thres 1
- 
  set i 0
  set r ""
  
@@ -30,9 +26,7 @@ proc find_best_threshold { N_obj diff_thres} {
  
  set ithresh_max 0	
  foreach iList $r {
- #	echo ">>$iList, $ithresh_max"
  	if { $iList < $diff_thres } {
- #		echo "out of here: $iList < $diff_thres"
  		break
  		} else {
  			incr ithresh_max
@@ -42,12 +36,8 @@ proc find_best_threshold { N_obj diff_thres} {
  		
  
  return $ithresh_max
-# echo $threshold_index
  
 }
-
-# huPrint info "Utilities.tcl read"
-
 
 ############################################################################
 
@@ -68,8 +58,6 @@ proc thresholds_labels { destImg thresholds garbage dims border_fill type} {
 			 -garb [lindex $garbage $ch] -style tcl ] 
 			 
 		set N [llength $segm_output]
-#		set N [lindex [split [$newImg range] " "] 1]
-#		huPrint info "channel $ch, garbage: [lindex $garbage $ch]"
 		
 		append Nobj " { thresh [lindex $thresholds $ch] ch $ch Nobj $N }"
 		$thresImage_0 del		
@@ -82,30 +70,6 @@ proc thresholds_labels { destImg thresholds garbage dims border_fill type} {
 }
 
 ############################################################################
-
-#function level = otsu(histogramCounts)
-#total = sum(histogramCounts); % '''total''' is the number of pixels in the given image. 
-#%% OTSU automatic thresholding method
-#sumB = 0;
-#wB = 0;
-#maximum = 0.0;
-#sum1 = dot( (0:255), histogramCounts); 
-
-#for ii=1:256
-#    wB = wB + histogramCounts(ii);
-#    wF = total - wB;
-#    if (wB == 0 || wF == 0)
-#        continue;
-#    end
-#    sumB = sumB +  (ii-1) * histogramCounts(ii);
-#    mF = (sum1 - sumB) / wF;
-#    between = wB * wF * ((sumB / wB) - mF) * ((sumB / wB) - mF);
-#    if ( between >= maximum )
-#        level = ii;
-##        maximum = between;
-  #  end
-#end
-#end
 
 ##
 proc otsu { destImg ch } {
@@ -129,7 +93,6 @@ proc otsu { destImg ch } {
 
 	}
 
-	#	set ptr [open /home/marcnol/Dropbox/projects/methodological/SVI/Images/test/otsu.dat "w"]
 	for {set iBin 0} {$iBin < $Nbins} {incr iBin} {
 		incr WB $data_array($iBin,0,0,0)
 		set WF [expr $total - $WB]
@@ -146,25 +109,13 @@ proc otsu { destImg ch } {
 			set otsu_level $iBin
 			set maximum $between
 		}
-#		puts $ptr "ii=$iBin hist=$data_array($iBin,0,0,0) otsu=$otsu_level ; max=$maximum; bet=$between WF=$WF WB=$WB sumB=$sumB mf=$mF"			
 	}
-	
-#	close $ptr
-		
-	
 	
 	return $otsu_level
 	
 }
 
 
-
-#proc histogram { destImg ch Nbins} {
-	
-	
-	
-	
-#}
 
 
 

@@ -1,6 +1,5 @@
 function [Cand,Cell] = parameter_retrieval(object, ObjectProps, Labelmatrix_K, ObjectProps_K)
 
-
 %% Function to select the candidates and retrieve their parameters
 %% ---------------------------------------------------------------
 
@@ -42,10 +41,6 @@ else
     
     % Retrieve the backbone of the cell
     ObjBin = cell2mat(ObjectProps.Image(object,:));
-%     NewCol = zeros(size(ObjBin,1),1);
-%     ObjBin = horzcat(NewCol, ObjBin, NewCol);
-%     NewRow = zeros(1, size(ObjBin,2));
-%     ObjBin = vertcat(NewRow, ObjBin, NewRow);
     ObjBin = padarray(ObjBin, [1 1], 0, 'both');
     Compl = imcomplement(ObjBin);
     DistFromZero = bwdist(Compl);
@@ -76,10 +71,6 @@ else
         
         % Retrieve the backbone of the candidate
         ObjBin_K = cell2mat(ObjectProps_K.Image(C,:));
-%         NewCol_K = zeros(size(ObjBin_K,1),1);
-%         ObjBin_K = horzcat(NewCol_K, ObjBin_K, NewCol_K);
-%         NewRow_K = zeros(1, size(ObjBin_K,2));
-%         ObjBin_K = vertcat(NewRow_K, ObjBin_K, NewRow_K);
         ObjBin_K = padarray(ObjBin_K, [1 1], 0, 'both');
         Compl_K = imcomplement(ObjBin_K);
         DistFromZero_K = bwdist(Compl_K);

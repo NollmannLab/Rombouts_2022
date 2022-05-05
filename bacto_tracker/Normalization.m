@@ -14,7 +14,6 @@ I2 = I .* I;
 I2_filtered = sqrt(imgaussfilt(I2,FilterSize));
 c = mean(mean(I2_filtered));
 I_processed = I_filtered ./ max(c,I2_filtered);
-% I_normalized = I_filtered ./ I2_filtered;
 
 I = reshape(I_processed, [Lx*Ly,1]);
 std_I = std(I);

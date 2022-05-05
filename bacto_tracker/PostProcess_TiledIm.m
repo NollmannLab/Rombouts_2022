@@ -15,19 +15,14 @@ Lx = size(New_Image,1);
 Ly = size(New_Image,2);
 
 %% STRINGENCY PIXEL SELECTION
-%%
-
 
 Im_Myxo = New_Image;
-% A = flipud(unique(nonzeros(Im_Myxo)));
-
 Im_Myxo_255 = Im_Myxo;
 Im_Myxo_255(Im_Myxo_255~=255) = 0;
 Im_Myxo_255 = logical(Im_Myxo_255);
 
 Im_Myxo_255 = bwmorph(Im_Myxo_255, 'hbreak', 1);
 Im_Myxo_255 = bwmorph(Im_Myxo_255, 'open', 1);
-% Im_Myxo_255 = bwpropfilt(Im_Myxo_255, 'area', [100 1000000],4);
 Im_Myxo_255 = bwpropfilt(Im_Myxo_255, 'area', [1 1000000],4);
 Labelmatrix_255 = labelmatrix(bwconncomp(Im_Myxo_255,4));
 Props_255 = regionprops('table', Labelmatrix_255, 'Area', 'PixelIdxList');
@@ -55,16 +50,19 @@ Im_Myxo_51(Im_Myxo_51<=50) = 0;
 Im_Myxo_51 = logical(Im_Myxo_51);
 Labelmatrix_51 = labelmatrix(bwconncomp(Im_Myxo_51,4));
 Props_51 = regionprops('table', Labelmatrix_51, 'Area', 'PixelIdxList');
-%%
+
+%% filters by area
+
 Area = [];
 for i = 1:size(Props_255(:,1),1)
-    %     for i = 172
     Area_255 = table2array(Props_255(i,1));
     
     % T_... gets you the CellID (or line in the Props_-matrix where the area
     % needs to be retrieved from)
+
     % Area_... gets you the area size of the segment for a given stringency
     % level
+
     T_204 = unique(nonzeros(Labelmatrix_204(cell2mat(Props_255{i,2}))));
     Area_204 = table2array(Props_204(T_204,1));
     
@@ -90,10 +88,8 @@ for i = 1:size(Props_255(:,1),1)
         R = abs(Area(j+1)-Area(j))/Area(j);
         Total = [Total;R];
         if R > 0.05
-            %         if R > 0.20
             break
         end
-        %         Total = [Total;R];
     end
     Test{i} = Total;
     Test2{i} = Total_2;
@@ -137,11 +133,9 @@ for i = 1:size(Test,2)
 end
 M = reshape(New, [Lx Ly]);
 
-
-%% Branchpoint correction
-%% NEEDS TO BE REFINED BECAUSE PREVIOUS VERSION WAS CREATING A THINNED IMAGE
-%% BASED ON 8-CONNECTIVITY AND NOW WE NEED TO RELY ON 4-CONNECTIVITY (BECAUSE SOME SEGMENTS TOUCH EACH THROUGH 8-CONNECTIVITY)
 %%
+% 4-CONNECTIVITY is used BECAUSE SOME SEGMENTS TOUCH EACH when using 8-CONNECTIVITY
+
 Compl = imcomplement(logical(M));
 DistFromZero = bwdist(Compl);
 DistFromZero(DistFromZero==1) = 0;
@@ -167,36 +161,34 @@ Conn_1 = bwconncomp(Good_Seg,4);
 Conn_Label = labelmatrix(Conn_1);
 
 %% Turtuosity of the segment to filter out all segments that are either fused or too curved
-%%
 
 Images = regionprops('table', Conn_1, 'Image');
 Dist = [];
 Tortuosity = [];
 for k = 1:Conn_1.NumObjects
-Image = cell2mat(Images{k,1});
-Image_thin = bwmorph(Image, 'thin', Inf);
-Image_thin = padarray(Image_thin, [1 1], 0, 'both');
-Image_spur = bwmorph(Image_thin, 'spur', 3);
-% Image_thin = bwmorph(Image_thin, 'spur', 3);
-Image_Ends = bwmorph(Image_spur, 'endpoints');
-% Image_Ends = bwmorph(Image_thin, 'endpoints');
-% define how long the Im_thin line is
-Length = size(find(Image_thin),1);
-% define the endpoints of this line
-[row,col] = find(Image_Ends);
+    Image = cell2mat(Images{k,1});
+    Image_thin = bwmorph(Image, 'thin', Inf);
+    Image_thin = padarray(Image_thin, [1 1], 0, 'both');
+    Image_spur = bwmorph(Image_thin, 'spur', 3);
+    Image_Ends = bwmorph(Image_spur, 'endpoints');
+    Length = size(find(Image_thin),1);
+    [row,col] = find(Image_Ends);
 
-if ~isempty(row) && size(row,1)~=1
-% define the eucledian distance between those end points
-EucDist = sqrt(((diff(row)^2+diff(col)^2)));
-Dist = [Dist, EucDist];
-% calculate the turtoistity
-Tort = Length/EucDist;
-elseif size(row,1)==1 % Discards all segments for which just 1 endpoint can be found (= case when cell is very short and 'spur' operation reduces the segment to 1 dot)
-Tort = 10;
-else
-    Tort = 10;
-end % Discards all segments for which no endpoints can be found (= case where the segment has a round shape)
-Tortuosity = [Tortuosity; Tort];
+    if ~isempty(row) && size(row,1)~=1
+        % define the eucledian distance between those end points
+
+        EucDist = sqrt(((diff(row)^2+diff(col)^2)));
+        Dist = [Dist, EucDist];
+
+        % calculate the turtoistity
+        Tort = Length/EucDist;
+        elseif size(row,1)==1 % Discards all segments for which just 1 endpoint can be found (= case when cell is very short and 'spur' operation reduces the segment to 1 dot)
+        Tort = 10;
+    else
+        Tort = 10;
+    end % Discards all segments for which no endpoints can be found (= case where the segment has a round shape)
+
+    Tortuosity = [Tortuosity; Tort];
 
 end
 

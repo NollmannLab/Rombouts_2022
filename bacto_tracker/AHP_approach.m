@@ -1,7 +1,6 @@
 
 function [Rank] = AHP_approach(Cand,Cell)
 
-
 %% Function that applies Analytical Hierarchy Processing method (from decision making theory)
 %% to identify the optimal cell based on a given set of criteria
 %% ------------------------------------------------------------------------------------------
@@ -17,7 +16,6 @@ function [Rank] = AHP_approach(Cand,Cell)
 % Candidates: Given as input to this function
 
 %% ------------------------------------------------------------------------------------------
-
 
 if isempty(Cand)
     Rank = [];
@@ -56,8 +54,6 @@ else
                 Total_y_length = vertcat(Total_y_length,y);
             elseif j == 3
                 Total_y_area = vertcat(Total_y_area,y);
-                %         elseif j == 4
-                %             Total_y_overlap = vertcat(Total_y_overlap,y);
             end
         end
     end
@@ -78,19 +74,10 @@ else
         end
     end
     
-    % for overlap
-    % PWM_overlap = zeros(size(Cand,1));
-    % for n = 1 : size(PWM_overlap)
-    %    for m = 1 : size(PWM_overlap)
-    %        PWM_overlap(n,m) = Total_y_overlap(n)/Total_y_overlap(m);
-    %    end
-    % end
-    
     % STEP 3: Calculate normalisation factor and local priorities
     % -----------------------------------------------------------
  
-    % for cell lengths
-        Length = [];
+    Length = [];
     for col = 1 : size(PWM_length,2)
         
         Norm_length = sum(PWM_length(:,col));
@@ -110,7 +97,6 @@ else
         Avg_prio_length = vertcat(Avg_prio_length, Avg_length);
     end
     
-    % for cell area
     Area = [];
     for col = 1 : size(PWM_area,2)
         

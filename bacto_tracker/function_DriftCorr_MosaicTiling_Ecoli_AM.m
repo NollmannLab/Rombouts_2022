@@ -1,6 +1,3 @@
-
-
-
 %% DRIFT CORRECTION AND TILING OF THE 3X3 MOSAIC IMAGE
 %% ===================================================
 
@@ -25,14 +22,12 @@
 % Select the experiment
 % ---------------------
 Dir_data = uigetdir('/mnt/grey/','Select the folder where the experiment is saved.');
-% Dir_data = '/mnt/grey/DATA/rawData_2020/Experiment_6_sara/Segmentation' % COMMENT
 cd(Dir_data)
 
 % Select the folder where the cross correlations (python - stored in
 % txt-files) are stored and retrieve list of all txt-files
 % --------------------------------------------------------
 Dir_CC = uigetdir(Dir_data, 'Select the folder where the Tiling-CrossCorr are stored.');
-%Dir_CC ='/mnt/grey/DATA/rawData_2020/Experiment_6_sara/Segmentation/Tiling' % COMMENT
 
 % List of cross correlation files
 cd(Dir_CC)
@@ -42,12 +37,11 @@ List_CC = dir('*.txt');
 % load in the data in this file
 % -----------------------------
 cd(uigetdir(Dir_data, 'Select the folder where the Drift CrossCorr are stored.'))
-%cd('/mnt/grey/DATA/rawData_2020/Experiment_6_sara/Segmentation') % COMMENT
 fileID = fopen('XYshift_DriftCorr_ROI5_EcoliSegmentedBased.txt', 'r');
-% fileID = fopen('XYshift_DriftCorr_ROI5.txt', 'r');
 
 formatSpec = '%f';
 Drift = fscanf(fileID,formatSpec);
+
 % Reformat the drift correction file
 oddI = 1:2:size(Drift,1);
 evenI = 2:2:size(Drift,1);
@@ -58,6 +52,7 @@ Drift = [Drift(oddI),Drift(evenI)];
 list = {'BF_normalized','Ecoli_normalized','Ecoli_segmented','Myxo_segmented', 'RGB'};
 [indx,tf] = listdlg('ListString',list, 'SelectionMode','single');
 Data = list{indx};
+
 % Create list of file names
 cd(strcat(Dir_data,'/Segmented_images/ROI_1/',Data));
 List_names = dir('*.tif');
@@ -70,14 +65,10 @@ cd('Analyzed')
 mkdir('Tiling_Drift_PostProcess')
 cd('Tiling_Drift_PostProcess')
 
-% matObject_Tiled = matfile('ConnComp_Tiled_DriftCorr_PostProcess_226-end.mat', 'writable', true);
-% matObject_Overlap = matfile('ConnComp_OverlapRegion_226-end.mat', 'writable', true);
-
 %% STEP 2: open loop over all time points
 %%
 tic
 parfor t = 1:size(List_names,1)
-%     for t = 1
     
     % Tiling
     % ------
@@ -127,26 +118,6 @@ parfor t = 1:size(List_names,1)
             matObject_Tiled.(Name_Area_image) = New_Area_image;
             
             disp(strcat('Frame #', num2str(t,'%03d'), ' was saved'))
-            
-%                     Lx = 5880;
-%                     Ly = 5880;
-%                     cd(Dir_data)
-%                     cd('Analyzed')
-%                     im_name = strcat(num2str(t,'%03d'), '_Myxo_drift_corrected.tif');
-%                 im_name = strcat(num2str(t,'%03d'), '_Myxo.tif');
-%             
-%                     T = Tiff(im_name, 'w');
-%                     tagstruct = struct('ImageLength', Lx, ...
-%                         'ImageWidth', Ly, ...
-%                         'BitsPerSample', 16, ...
-%                         'Photometric', Tiff.Photometric.MinIsBlack, ...
-%                         'PlanarConfiguration', Tiff.PlanarConfiguration.Chunky, ...
-%                         'Compression', Tiff.Compression.None, ...
-%                         'SamplesPerPixel',1);
-%                     T.setTag(tagstruct);
-%                     T.write(uint16(New_Image));
-%                     close(T)
-            
             
         case 3
             % function for E. coli postprocessing

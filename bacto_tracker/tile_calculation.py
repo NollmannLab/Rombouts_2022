@@ -2,8 +2,6 @@
 # -----------------------------------------------------------------------------------------------------
 
 """
-
-
 @author: Sara Rombouts
 
 Created: 01/09/2020
@@ -16,8 +14,6 @@ We save 24 CCs
 - the last 12 are the ones for which the previous calc fails base don Myxo_segmented (result = 0,0 is calc based on BF_normalized gave result and is not 0,0 when calc is based on Myxo_segmented)
 """
 
-
-
 # from pathlib import Path
 import os
 import matplotlib.pyplot as plt
@@ -27,7 +23,6 @@ import glob
 
 
 path_to_data = '/mnt/grey/DATA/rawData_2020/Experiment_9_sara/Segmentation/'
-# path_to_data = '/home/sara/Desktop/'
 
 #Create a directory in which the txt-files should be stored
 new_dir_name = path_to_data+'Tiling'
@@ -74,9 +69,7 @@ list.sort(FilesMyxo_ROI8)
 list.sort(FilesMyxo_ROI9)
 
 for i in range(len(Files_ROI1)):
-
-# for i in range(0,3):
-    
+  
     A1 = plt.imread(Files_ROI1[i])
     A2 = plt.imread(Files_ROI2[i])
     A3 = plt.imread(Files_ROI3[i])
@@ -189,7 +182,6 @@ for i in range(len(Files_ROI1)):
     
     
     # Concatenate the arrays
-    # Total = np.array((shift9_8, shift8_7, shift4_5, shift5_6, shift3_2, shift2_1, shift9_4, shift4_3, shift8_5, shift5_2, shift7_6, shift6_1))
     Total = np.array((shift9_8, shift8_7, shift4_5, shift5_6, shift3_2, shift2_1, shift9_4, shift4_3, shift8_5, shift5_2, shift7_6, shift6_1, shiftB9_8, shiftB8_7, shiftB4_5, shiftB5_6, shiftB3_2, shiftB2_1, shiftB9_4, shiftB4_3, shiftB8_5, shiftB5_2, shiftB7_6, shiftB6_1))
     # Create a filename which will change with each loop
     j = i+1

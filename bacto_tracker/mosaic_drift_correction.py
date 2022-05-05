@@ -28,11 +28,8 @@ from skimage.feature import register_translation
 import numpy as np
 
 # STEP 2: Load in the Ecoli data
-# SavingPath = Path('/mnt/grey/DATA/rawData_2020/Experiment_9_sara/Segmentation/')
 SavingPath = Path('/mnt/PALM_dataserv/DATA/Sara/DATA/TimeLapseData/PredationAssays/2020_05_20-SampleDilutedEcoliColony/003_FastTimeLapse_RAMM_Test')
-# StartingPath = Path('/mnt/grey/DATA/rawData_2020/Experiment_9_sara/Segmentation/Segmented_images/ROI_5/')
 StartingPath = Path('/mnt/PALM_dataserv/DATA/Sara/DATA/TimeLapseData/PredationAssays/2020_05_20-SampleDilutedEcoliColony/003_FastTimeLapse_RAMM_Test/Segmented_images/ROI_5')
-#PathEcoli = StartingPath/'Ecoli_segmented'
 PathEcoli = StartingPath/'Myxo_segmented'
 
 # We retrieve from the Ecoli directory only the tif-files and sort the list (if we do not sort, then the list is not numbered properly 
@@ -52,8 +49,6 @@ plt.imshow(ImgRef)
 # reference image (pixel precision)
 
 for file in range(len(EcoliFiles)):
-#for file in range(100):
-    
 
     Img = plt.imread(PathEcoli/EcoliFiles[file])
 

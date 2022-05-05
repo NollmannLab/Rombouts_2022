@@ -1,5 +1,3 @@
-
-
 %% This program is used to calculate the segmented image of Sara's time-lapse.
 %% It works in four steps :
 %%    1- Load the trained networks

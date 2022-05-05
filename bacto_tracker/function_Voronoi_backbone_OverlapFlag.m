@@ -15,8 +15,6 @@ cd(Dir_data)
 NFiles = size(dir('Frame*.mat'),1);
 NFiles_overlap = size(dir('Overlap*.mat'),1);
 
-
-
 % Loop over the segments
 % ----------------------
 
@@ -49,7 +47,8 @@ parfor k = 1:NFiles
     
     % Flag the cells in border regions (10 pixels border)
     % ---------------------------------------------------
-Name_Area_image = strcat('AreaImage_frame_', num2str(k, '%03d'));
+
+    Name_Area_image = strcat('AreaImage_frame_', num2str(k, '%03d'));
     Area_image = Image.(Name_Area_image);
     
     Area_image = logical(labelmatrix(Area_image));
@@ -83,37 +82,3 @@ Name_Area_image = strcat('AreaImage_frame_', num2str(k, '%03d'));
     disp(strcat('Frame #', num2str(k,'%03d'), ' was analyzed'))
 end
 
-
-
-
-
-
-
-
-%% Get a distribution of all Voronoi polyarea values
-%% =================================================
-% Total = [];
-% for k = 1: 454
-%     Name = strcat('Frame_', num2str(k, '%03d'));
-%     Image = matfile(Name, 'Writable', false);
-%     
-%     VoronoiTessellation = Image.VoronoiTessellation;
-%     Select = find(VoronoiTessellation(:,3)>=2000 & VoronoiTessellation(:,3)<=3500);
-%     Image = VoronoiTessellation(Select,2);
-%     
-%     Total = [Total; Image];
-%     
-% end
-% 
-% 
-% 
-% 
-% 
-% 
-% Test = double(Test);
-% 
-% for i = 1:Frame_001.NumObjects
-%     
-% Test(Test==i) = log10(VoronoiTessellation(i));
-% 
-% end

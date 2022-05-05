@@ -2,15 +2,12 @@
 # Do not change
 ########################################################<
 # Declaration of paths and file types.
-#set sourceDir "/home/marcnol/PALM/marcnol/software/huygens_script/"
-#set merfishDir "/mnt/grey/DATA/rawData_2020/Experiment_5/DAPI/005_merFISH_RAMM_DAPI/"
 set srcType   "tiff"
 set destType  "tiff16"
 
 ########################################################>
 # MAIN PARAMETERS TO SET
 ########################################################<
-#set destDir   "/home/marcnol/SVI/Images/test/"
 
 #set singleDir true
 set singleDir false
@@ -46,16 +43,18 @@ set border_fill "50 50 1"
 # pixel size, um
 # emCCD front illuminated
 #set dx 0.08
+
 # sCMOS
 set dx 0.105#0.098
 set dy $dx
 set dz 0.25
 set NA 1.2#1.3#1.45
+
 # medium refractive index (water: 1.338)
-set ri 1.334#1.406 
+set ri 1.334 #1.406 
 # lens refractive index (water immersion: 1.338, oil immersion: 1.515)
 #set ril 1.515
-set ril 1.334#1.406
+set ril 1.334 #1.406
 
 ########################################################<
 

@@ -1,22 +1,12 @@
-# This Huygens script converts MERFISH to stacked tiff
-# convert2Tiff "$srcImg" "$destImg" "2"
-# newZ is the number of Z slices
+# This Huygens script converts RAMM images to stacked tiff
 
 proc convert2Tiff {srcImg destImg chan} {
-# chan is the number of channels to convert
-	
-#	run providing the following commands:
-#	set newZ 40
-#	set srcImg [img open {/home/marcnol/SVI/Batch/aa.tif} -foreignTo float -cmode scale -logEnable -series tool]
-#	set destImg [$srcImg repl "conversionResult"]
-
 	set dims [$srcImg getdims]
 	# z dimensions of the input image
 	set zdim [lindex $dims 2]
         # new Channel dimension
         set newZ [expr $zdim / $chan]
 
-#        set chan [expr $zdim / $newZ]
 	set type [$srcImg getconfig -mode type]
 	set span $dims 
 
@@ -45,10 +35,6 @@ proc convert2Tiff {srcImg destImg chan} {
 	$destImg:Ch0 -> $destImg
 
 	# allow this if you want a thumb image to be shown... it may slow down conversion.	
-# commented on 28/09/2017
-	#	$destImg show
-
-#	huPrint info "here i am"	
 
 	# delete the (joined) channel image, as it is not needed anymore
 	$destImg:Ch0 del

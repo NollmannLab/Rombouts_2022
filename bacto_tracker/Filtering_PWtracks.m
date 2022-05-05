@@ -9,8 +9,6 @@ function Total_filt_track = Filtering_PWtracks(Total_track, ObjectProps, ObjectP
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-
 %% Filtering of the Total_Track
 
 Filtered_Result = Total_track;
@@ -49,16 +47,13 @@ for i = 2 : size(Double_tracks,1)
     if isempty(Rank)
         Cell_Track = 0;
         Score = 0;
-        %             New_Track = [Cell_Track, Cell_K, Score];
     elseif size(Rank,1)==1
         Cell_Track = Rank(:,1);
         Score = 100;
-        %             New_Track = [Cell_Track, Cell_K, Score];
     elseif size(Rank,1)>1 && size(find(Rank(:,2)==max(Rank(:,2))),1)==1
         Cell_K_A = Cell_K;
         Cell_Track_A = Rank(find(Rank(:,2)==max(Rank(:,2))),1);
         Score_A = 200;
-        %             New_Track = [Cell_Track, Cell_K, Score];
         Cell_Track_B = Rank(find(Rank(:,2)~=max(Rank(:,2))),1);
         Cell_K_B = zeros(size(Cell_Track_B,1),1);
         Score_B = repmat(500, size(Cell_Track_B,1), 1);

@@ -1,8 +1,4 @@
-
-
 proc parse_analyse_output { segm_output filename } {
-#set segm_output [ $tresholded_image analyze $labeled_image \
-#			 -garb $garbage_value	-chan $channel -style tcl ] 
 
 set fileId [open $filename "w"]
 
@@ -32,7 +28,6 @@ for {set i 0} {$i < $val_length} {incr i} {
 	set bboxOffset $one_object(O)
 	set bboxSpan $one_object(S)
 
-#	huPrint info "label $label, CM $CM"
 	set output_string "$label, $vol, $surf, $sVol, $min, $max, $sum, $mean,\
 			$var, $len, $wiLat, $wiAx"
  	foreach iCM $CM {

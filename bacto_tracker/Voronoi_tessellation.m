@@ -145,9 +145,6 @@ for i = 1:length(c)
         x = v(c{i},1);
         y = v(c{i},2);
         A = polyarea(x,y);
-%         if A>=5
-%             A = 5;
-%         end
         a = vertcat(a,A);
         patch(x,y,A);
 
@@ -169,7 +166,6 @@ for j = 1 : length(row)
     b = [];
     % Compute the euclidian distances
     dist = sum((Centroid_list-Centroid_list(J,:)).^2,2);
-    %     dist = sum((Total-Total(J,:)).^2,2);
     dist(row)=0;
     [~,r] = mink(dist,sum(dist==0)+3);
     
@@ -180,9 +176,6 @@ for j = 1 : length(row)
         x = v(c{K},1);
         y = v(c{K},2);
         A = polyarea(x,y);
-%                 if A>=5
-%             A = 5;
-%         end
         b = vertcat(b,A);
         
     end
@@ -212,27 +205,4 @@ Total_Voronoi = [Cells,Voronoi, Points];
 [~,idx] = sort(Total_Voronoi(:,1));
 Total_Voronoi = Total_Voronoi(idx,:);
 
-    
-    
-    
-    
-    
-    
-    
-%     
-% Spur_conn = bwconncomp(Im_spur,8);
-% Spur_label = labelmatrix(Spur_conn);
-% Images = regionprops('table', Spur_conn, 'Image');
-% for g = 1:Spur_conn.NumObjects
-%     Image = cell2mat(Images{g,1});
-%     Image = padarray(Image, [1 1], 0, 'both');
-%     Image_Ends = bwmorph(Image, 'endpoints');
-%     [row,col] = find(Image_Ends);
-%     
-%     if isempty(row)
-%         Spur_label(Spur_label==g)=0;
-%     end
-% 
-% end
-%     
     

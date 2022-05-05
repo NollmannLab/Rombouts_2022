@@ -190,10 +190,7 @@ parfor nimage = 1 : size(TIFF,1)
                 OTF = abs(OTF);
                 N = round(length(OTF)/2);
                 OTF = (OTF(1:N) + flipud(OTF(end-N+1:end)))/2;
-                %     OTF = OTF(OTF(:)>50);
-                %     OTF = smooth(OTF,50,'lowess');
                 [OTFup, ~] = envelope(OTF, 5000, 'rms');
-                %     OTFup = OTFup - BaseLine*mean(OTFup(1:20))/mean(BaseLine(1:20));
                 OTFup = OTFup - BaseLine*median(OTFup(end-50000:end))/median(BaseLine(end-50000:end));
                 Area(nplane) = sum(OTFup);
                 

@@ -29,12 +29,11 @@ evenI = 2:2:size(A,1);
 A = [A(oddI),A(evenI)];
 
 if size(A,1)==24
-    % CORRECTION ADDED ON 07/09/2020 (line 30-38)
     % A contains all CC (calculated with Python) based on BF_normalized (row 1
     % to 12) and where the CC based on BF_normalized fails, it cotains the CC
     % based on Myxo_segmetend (row 13 to 24 - contains zeros if CC could be
     % calculated based on BF_normalized)
-    % BUT we need to get all CCs for all images (does not matter based on which
+    % BUT we get all CCs for all images (does not matter based on which
     % images it is calculated) - create consensus matric of CC by adding the 2
     % together - new CC matrix contains 12 rows with 12 CCs in x and y
     A = A(1:12,:)+A(13:24,:);

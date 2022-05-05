@@ -84,4 +84,3 @@ Myxo_Area = a(cellIndex);
 
 % STEP 4: Save or outputresult
 
-

@@ -21,10 +21,6 @@ Overlap_K = cell2mat(ObjectProps_K.PixelIdxList(Cell_K));
 
 % Retrieve the backbone of the cell
 ObjBin = cell2mat(ObjectProps_K.Image(Cell_K,:));
-% NewCol = zeros(size(ObjBin,1),1);
-% ObjBin = horzcat(NewCol, ObjBin, NewCol);
-% NewRow = zeros(1, size(ObjBin,2));
-% ObjBin = vertcat(NewRow, ObjBin, NewRow);
 ObjBin = padarray(ObjBin, [1 1], 0, 'both');
 Compl = imcomplement(ObjBin);
 DistFromZero = bwdist(Compl);
@@ -57,10 +53,6 @@ for c = 1 : size(Cand_k,1)
     
     % Retrieve the backbone of the candidate
     ObjBin_k = cell2mat(ObjectProps.Image(C,:));
-%     NewCol_k = zeros(size(ObjBin_k,1),1);
-%     ObjBin_k = horzcat(NewCol_k, ObjBin_k, NewCol_k);
-%     NewRow_k = zeros(1, size(ObjBin_k,2));
-%     ObjBin_k = vertcat(NewRow_k, ObjBin_k, NewRow_k);
     ObjBin_k = padarray(ObjBin_k, [1 1], 0, 'both');
     Compl_k = imcomplement(ObjBin_k);
     DistFromZero_k = bwdist(Compl_k);

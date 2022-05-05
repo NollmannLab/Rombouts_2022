@@ -18,8 +18,6 @@ ObjectProps = regionprops('table', Im_Frame, 'BoundingBox');
 a = [];
 A = [];
 for j = 1:size(VoronoiTessellation,1)
-
-    
     
 PointOfInterest = [VoronoiTessellation(j,4), VoronoiTessellation(j,3)];
 
@@ -44,9 +42,7 @@ C_Myxo = table2array(regionprops('table', logical(Im_crop_Myxo), 'Centroid'));
 Myxo_loc = find(ismember(C,C_Myxo,'rows'));
 
 [v,c] = voronoin(C);
-
-
-    
+  
     if size(find(c{Myxo_loc}==1),2)==0
         
         x = v(c{Myxo_loc},1);

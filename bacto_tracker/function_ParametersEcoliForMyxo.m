@@ -2,22 +2,19 @@
 %% Main code for Ecoli parameters
 %% ==============================
 
-
-
 clear all
 close all
 clc
 
 % Create a new matfile to save E. coli paramters in
-
 Dir_data = uigetdir('/mnt/grey/','Select the folder called Analyzed.');
 cd(Dir_data)
 cd('Tiling_Drift_PostProcess')
+
 % Count the number of files
 NFiles = size(dir('Frame*.mat'),1);
 
 % Loop over the files
-
 parfor k = 1: NFiles
     
     % Get the E.coli files (EC_frame...)
@@ -34,10 +31,10 @@ parfor k = 1: NFiles
     
     %% 
     % SF 1: Which E. coli segment belong to island/small group/single cell?
-        % Input: EC_Frame...
-        % Output: Im_EC_final, Image_postprocess_EC.EcoliAssignment -->
-        % Both needs to be saved in EC_Frame_...
-        % NOTE: Can this info be saved in ConnComp
+    % Input: EC_Frame...
+    % Output: Im_EC_final, Image_postprocess_EC.EcoliAssignment -->
+    % Both needs to be saved in EC_Frame_...
+    % NOTE: Can this info be saved in ConnComp
         
     [Im_EC_final, EcoliAssignment] = EcoliAssignmentIslands(Image_postprocess_EC);
     
