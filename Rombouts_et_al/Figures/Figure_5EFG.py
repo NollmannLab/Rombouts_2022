@@ -6,6 +6,16 @@ Created on Wed Jun  9 11:03:49 2021
 @author: legall
 """
 
+
+''' 
+Loads Kymograph fluorescence intensities and fit intensity profiles with exponentials.
+
+Usage:
+- modify DATA PATH to match the datashader maps location
+
+'''
+
+
 #%% IMPORTS ###################################################################
 import os
 import yaml
