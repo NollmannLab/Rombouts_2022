@@ -1,0 +1,297 @@
+--- #scripts
+# For python to read numbers with exponent, please use the synthax: 10.e+6 and instead of 10e+6 or 10**6
+
+
+Figure_S1A.py:
+  - comment: "V20220207"
+  - inputs:
+    - experiment: exp9
+      defaults: exp8
+    - density_min: 0
+      defaults: 0
+    - density_max: 100
+      defaults: 100
+    - Nb_cells_min: 0
+      defaults: 0
+    - Nb_cells_max: 10.e+6
+      defaults: 10.e+6
+    - speed_min: 0
+      defaults: 0
+    - speed_max: 10.e+6
+      defaults: 10.e+6
+    - distance_norm_min: 0
+      defaults: 0
+    - distance_norm_max: 10.e+6
+      defaults: 10.e+6
+    - Mask_width: 400
+      defaults: 400
+    - t1: 0
+      defaults: 0
+    - t2: 10.e+6
+      defaults: 10.e+6
+    - X_field: clust_area_x
+      defaults: clust_area_x
+    - Y_field: Total_Density
+      defaults: Total_Density
+    - plot_width: 500
+      defaults: 500
+    - plot_height: 500
+      defaults: 500
+    - x_range: [2.5, 6.5]
+      defaults: [2.5, 6.5]
+    - y_range: [2, 7]
+      defaults: [2, 7]
+  - outputs: None
+
+Figure_1FHI.py:
+  - comment: "V20220207"
+  - inputs:
+    - exp_WT : ['exp6','exp8','exp9','exp50','exp66','exp70']
+      defaults : ['exp6','exp8','exp9','exp50','exp66','exp70']
+    - exp_aS : ['exp11','exp54','exp55','exp72']
+      defaults: ['exp11','exp54','exp55','exp72']
+    - exp_As : ['exp12','exp51','exp53','exp71']
+      defaults: ['exp12','exp51','exp53','exp71']
+    - density_min: 0
+      defaults: 0
+    - density_max: 100
+      defaults: 100
+    - Nb_cells_min: 0
+      defaults: 0
+    - Nb_cells_max: 10.e+6
+      defaults: 10.e+6
+    - speed_min: 0
+      defaults: 0
+    - speed_max: 10.e+6
+      defaults: 10.e+6
+    - distance_norm_min: 2
+      defaults: 2
+    - distance_norm_max: 10.e+6
+      defaults: 10.e+6
+    - Mask_width: 400
+      defaults: 400
+    - t1: 0
+      defaults: 0
+    - t2: 10.e+6
+      defaults: 10.e+6
+    - X_field: clust_area_x
+      defaults: clust_area_x
+    - Y_field: Total_Density
+      defaults: Total_Density
+    - plot_width: 500
+      defaults: 500
+    - plot_height: 500
+      defaults: 500
+    - x_range: [2.5, 6.5]
+      defaults: [2.5, 6.5]
+    - y_range: [2, 7]
+      defaults: [2, 7]
+  - outputs: None
+
+Figure_1K_3F.py:
+  - comment: "V20220207"
+  - inputs:
+    - exp_WT : ['exp6','exp8','exp9','exp50','exp66','exp70']
+      defaults : ['exp6','exp8','exp9','exp50','exp66','exp70']
+    - exp_aS : ['exp11','exp54','exp55','exp72']
+      defaults: ['exp11','exp54','exp55','exp72']
+    - exp_As : ['exp12','exp51','exp53','exp71']
+      defaults: ['exp12','exp51','exp53','exp71']
+    - Exp_dT : {                  # Time between frames in seconds
+      "exp6": 40.898,
+      "exp8": 37.25,
+      "exp9": 35.33,
+      "exp10": 33.83,
+      "exp11": 33.489,
+      "exp12": 33.9,
+      "exp50": 33.54,
+      "exp51": 35.507,
+      "exp53": 37.764,
+      "exp54": 37.7878,
+      "exp55": 35.356,
+      "exp66": 35,
+      "exp70": 35.794,
+      "exp71": 31.711,
+      "exp72": 31.911,
+    }
+    - pix_size : 0.105
+      defaults: 0
+    - density_min: 0
+      defaults: 0
+    - density_max: 4.5
+      defaults: 100
+    - Nb_cells_min: 3
+      defaults: 0
+    - Nb_cells_max: 10.e+6
+      defaults: 10.e+6
+    - speed_min: 0
+      defaults: 0
+    - speed_max: 10.e+6
+      defaults: 10.e+6
+    - distance_norm_min: 0
+      defaults: 0
+    - distance_norm_max: 10.e+6
+      defaults: 10.e+6
+    - Mask_width: 400
+      defaults: 400
+    - t1: 0
+      defaults: 0
+    - t2: 10.e+6
+      defaults: 10.e+6
+    - plot_width: 5880
+      defaults: 5880
+    - plot_height: 5880
+      defaults: 5880
+  - outputs: None
+
+Figure_1L_4I.py:
+  - comment: "V20220207"
+  - inputs:
+    - exp_WT : ['exp6','exp8','exp9','exp50','exp66','exp70']
+      defaults : ['exp6','exp8','exp9','exp50','exp66','exp70']
+    - exp_aS : ['exp11','exp54','exp55','exp72']
+      defaults: ['exp11','exp54','exp55','exp72']
+    - exp_As : ['exp12','exp51','exp53','exp71']
+      defaults: ['exp12','exp51','exp53','exp71']
+    - density_min: 0
+      defaults: 0
+    - density_max: 100
+      defaults: 100
+    - Nb_cells_min: 3
+      defaults: 0
+    - Nb_cells_max: 10.e+6
+      defaults: 10.e+6
+    - speed_min: 0
+      defaults: 0
+    - speed_max: 10.e+6
+      defaults: 10.e+6
+    - distance_norm_min: 0
+      defaults: 0
+    - distance_norm_max: 10.e+6
+      defaults: 10.e+6
+    - Mask_width: 400
+      defaults: 400
+    - t1: 0
+      defaults: 0
+    - t2: 10.e+6
+      defaults: 10.e+6
+    - plot_width: 5880
+      defaults: 5880
+    - plot_height: 5880
+      defaults: 5880
+  - outputs: None
+
+Figure_2CDE.py:
+  - comment: "V??"
+  - inputs:
+    - exp_WT : ['exp6','exp8','exp9','exp50','exp66','exp70']
+      defaults : ['exp6','exp8','exp9','exp50','exp66','exp70']
+    - exp_aS : ['exp11','exp54','exp55','exp72']
+      defaults: ['exp11','exp54','exp55','exp72']
+    - exp_As : ['exp12','exp51','exp53','exp71']
+      defaults: ['exp12','exp51','exp53','exp71']
+    - density_min: 0
+      defaults: 0
+    - density_max: 100
+      defaults: 100
+    - Nb_cells_min: 0
+      defaults: 0
+    - Nb_cells_max: 10.e+6
+      defaults: 10.e+6
+    - speed_min: 0
+      defaults: 0
+    - speed_max: 10.e+6
+      defaults: 10.e+6
+    - distance_norm_min: 2
+      defaults: 0
+    - distance_norm_max: 10.e+6
+      defaults: 10.e+6
+    - Mask_width: 400
+      defaults: 400
+    - t1: 0
+      defaults: 0
+    - t2: 10.e+6
+      defaults: 10.e+6
+    - plot_width: 5880
+      defaults: 5880
+    - plot_height: 5880
+      defaults: 5880
+  - outputs: None
+
+Figure_3BCD.py:
+  - comment: "20220131"
+  - inputs:
+    - experiments: ['exp6','exp8','exp9','exp50','exp66','exp70']
+      defaults:  ['exp6','exp8','exp9','exp50','exp66','exp70'] #['exp11','exp54','exp55','exp72'] # ['exp12','exp51','exp53','exp71']
+    - experiment : exp8
+      defaults: exp8
+    - xstart : 2800
+    - ystart : 3400
+    - Zoom_Width : 1000
+  - outputs: None
+  
+Figure_3E.py:
+  - comment: "V??"
+  - inputs:
+    - exp_WT : ['exp6','exp8','exp9','exp50','exp66','exp70']
+      defaults : ['exp6','exp8','exp9','exp50','exp66','exp70']
+    - exp_aS : ['exp11','exp54','exp55','exp72']
+      defaults: ['exp11','exp54','exp55','exp72']
+    - exp_As : ['exp12','exp51','exp53','exp71']
+      defaults: ['exp12','exp51','exp53','exp71']
+  - outputs: None
+  
+Figure_1GJ_3BCDFGH.py:
+  - comment: "V20220207"
+  - inputs:
+    - experiments: ['exp6','exp8','exp9','exp50','exp66','exp70','exp11','exp54','exp55','exp72','exp12','exp51','exp53','exp71']
+      defaults: exp8
+    - speed_min: 0
+      defaults: 0
+    - speed_max: 10.e+6
+      defaults: 10.e+6
+    - distance_norm_min: 0
+      defaults: 0
+    - distance_norm_max: 10.e+6
+      defaults: 10.e+6
+    - Mask_width: 400
+      defaults: 400
+    - t1: 0
+      defaults: 0
+    - t2: 10.e+6
+      defaults: 10.e+6
+    - plot_width: 5880
+      defaults: 5880
+    - plot_height: 5880
+      defaults: 5880
+  - outputs: 
+    - SaveResults : True
+
+Figure_4EFG_preprocess.py:
+  - comment: "V???"
+  - inputs:
+    - experiment: exp9
+      defaults: exp9
+    - Chan: 1
+      defaults: 1
+    - nb_frames: 699
+      defaults: 699
+    - z_focal_plane: 4
+      defaults: 4
+  - outputs: None
+
+Figure_4EFG.py:
+  - comment: "V???"
+  - inputs:
+    - experiment: exp9
+      defaults: exp9
+    - Chan: 2
+      defaults: 1
+    - nb_frames: 699
+      defaults: 699
+    - fit_exp: True
+      defaults: True
+    - ROIs: [[1,6,7], [8,5,2], [9,4,3]]
+      defaults: [[1,6,7], [8,5,2], [9,4,3]] # [[9,4,3], [8,5,2],[1,6,7]]
+  - outputs: None
+      
