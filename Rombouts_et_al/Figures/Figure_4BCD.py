@@ -25,7 +25,7 @@ import sys
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import cm
-from matplotlib.colors import ListedColormap
+from matplotlib.colors import ListedColormap, LinearSegmentedColormap
 import pandas as pd
 import pickle5 as pickle
 import  matplotlib as mpl
@@ -305,11 +305,16 @@ def dispSimilarity(result, imA, imB, experiment, inputs):
     ystart = getInfoFromListOfDict(inputs, 'ystart')
     Zoom_Width = getInfoFromListOfDict(inputs, 'Zoom_Width')
     
-    # Make custom colormap
+    # Make custom green colormap for tracks
     cmp = cm.get_cmap('Greens', 512)
     newcolors = cmp(np.linspace(0,1, 512))
     newcolors[0, :] = np.array([1, 1, 1, 1])
     newcmp = ListedColormap(newcolors)
+    
+    # Make custom white-red colormap for similarity index
+    colors_list = ["white","red","darkred"]
+    nodes = [0.0, 0.5,  1]
+    red_cmap = LinearSegmentedColormap.from_list("mycmap", list(zip(nodes, colors_list)))
     
     # ------ PLOT SPECIFIC EXPERIMENTS CORRELATION RESULTS
     classes = list(data[experiment][0].keys())
@@ -340,7 +345,7 @@ def dispSimilarity(result, imA, imB, experiment, inputs):
     axs[1].set_title(classes[class_sel[0]], fontsize=20)
     axs[2] = plt.subplot(1,3,3, sharex=axs[0], sharey=axs[0])
     axs[2].invert_yaxis()
-    axs[2].matshow(corr, cmap='seismic', vmin=-0.1, vmax=0.1, interpolation=interp)
+    axs[2].matshow(corr, cmap=red_cmap, vmin=-0.1, vmax=0.1, interpolation=interp)
     axs[2].set_title('Correlation map', fontsize=20)
     
     for i in range(3):
@@ -374,7 +379,7 @@ def dispSimilarity(result, imA, imB, experiment, inputs):
     ax2.imshow(im1, cmap=newcmp, vmin=0, vmax=im1.max())
     ax2.set_title(classes[class_sel[0]], fontsize=20)
     ax3 = plt.subplot(1,3,3, sharex=ax1, sharey=ax1)
-    ax3.imshow(corr, cmap='seismic', vmin=-0.1, vmax=0.1)
+    ax3.imshow(corr, cmap=red_cmap, vmin=-0.1, vmax=0.1)
     ax3.set_title('Correlation map', fontsize=20)
     
     
