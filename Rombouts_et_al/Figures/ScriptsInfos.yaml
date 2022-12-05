@@ -2,8 +2,8 @@
 # For python to read numbers with exponent, please use the synthax: 10.e+6 and instead of 10e+6 or 10**6
 
 
-Figure1_2D_Histograms_twinaxis_20220207.py:
-  - comment: "V20220207"
+Figure_S1A.py:
+  - comment: "V20220207 : Loads dataframe file with all features for a single experiment and computes 2D histograms of the Voronoi area (wrongly termed density here) vs cluster size."
   - inputs:
     - experiment: exp9
       defaults: exp8
@@ -43,13 +43,13 @@ Figure1_2D_Histograms_twinaxis_20220207.py:
       defaults: [2, 7]
   - outputs: None
 
-Figure1_Mean_2DHistograms_20220207.py:
-  - comment: "V20220207"
+Figure_1FHI_3DE.py:
+  - comment: "V20220207 : Loads dataframe files with all features for all experiments and computes the mean of normalized 2D histograms for each condition. Displays the difference of one confition versus another."
   - inputs:
-    - exp_WT : ['exp6','exp8','exp9','exp50','exp66']
-      defaults : ['exp6','exp8','exp9','exp50','exp66']
-    - exp_aS : ['exp11','exp54','exp55']
-      defaults: ['exp11','exp54','exp55']
+    - exp_WT : ['exp6','exp8','exp9','exp50','exp66','exp70']
+      defaults : ['exp6','exp8','exp9','exp50','exp66','exp70']
+    - exp_aS : ['exp11','exp54','exp55','exp72']
+      defaults: ['exp11','exp54','exp55','exp72']
     - exp_As : ['exp12','exp51','exp53','exp71']
       defaults: ['exp12','exp51','exp53','exp71']
     - density_min: 0
@@ -88,13 +88,13 @@ Figure1_Mean_2DHistograms_20220207.py:
       defaults: [2, 7]
   - outputs: None
 
-Figure1n2_Load_all_dataframes_exp_Speed_20220207.py:
-  - comment: "V20220207"
+Figure_1K_3F.py:
+  - comment: "V20220207 : Loads dataframe files with all features for all experiments and computes the mean histograms of speed for all tracks."
   - inputs:
-    - exp_WT : ['exp6','exp8','exp9','exp50','exp66']
-      defaults : ['exp6','exp8','exp9','exp50','exp66']
-    - exp_aS : ['exp11','exp54','exp55']
-      defaults: ['exp11','exp54','exp55']
+    - exp_WT : ['exp6','exp8','exp9','exp50','exp66','exp70']
+      defaults : ['exp6','exp8','exp9','exp50','exp66','exp70']
+    - exp_aS : ['exp11','exp54','exp55','exp72']
+      defaults: ['exp11','exp54','exp55','exp72']
     - exp_As : ['exp12','exp51','exp53','exp71']
       defaults: ['exp12','exp51','exp53','exp71']
     - Exp_dT : {                  # Time between frames in seconds
@@ -118,9 +118,9 @@ Figure1n2_Load_all_dataframes_exp_Speed_20220207.py:
       defaults: 0
     - density_min: 0
       defaults: 0
-    - density_max: 100
+    - density_max: 4.5
       defaults: 100
-    - Nb_cells_min: 0
+    - Nb_cells_min: 3
       defaults: 0
     - Nb_cells_max: 10.e+6
       defaults: 10.e+6
@@ -144,20 +144,20 @@ Figure1n2_Load_all_dataframes_exp_Speed_20220207.py:
       defaults: 5880
   - outputs: None
 
-Figure1n2_Load_all_dataframes_exp_Directionality_20220207.py:
-  - comment: "V20220207"
+Figure_1L_4I.py:
+  - comment: "V20220207 : Loads dataframe files with all features for all experiments and computes the mean histograms of MSD alpha exponents for all tracks."
   - inputs:
-    - exp_WT : ['exp6','exp8','exp9','exp50','exp66']
-      defaults : ['exp6','exp8','exp9','exp50','exp66']
-    - exp_aS : ['exp11','exp54','exp55']
-      defaults: ['exp11','exp54','exp55']
+    - exp_WT : ['exp6','exp8','exp9','exp50','exp66','exp70']
+      defaults : ['exp6','exp8','exp9','exp50','exp66','exp70']
+    - exp_aS : ['exp11','exp54','exp55','exp72']
+      defaults: ['exp11','exp54','exp55','exp72']
     - exp_As : ['exp12','exp51','exp53','exp71']
       defaults: ['exp12','exp51','exp53','exp71']
     - density_min: 0
       defaults: 0
     - density_max: 100
       defaults: 100
-    - Nb_cells_min: 0
+    - Nb_cells_min: 3
       defaults: 0
     - Nb_cells_max: 10.e+6
       defaults: 10.e+6
@@ -181,13 +181,13 @@ Figure1n2_Load_all_dataframes_exp_Directionality_20220207.py:
       defaults: 5880
   - outputs: None
 
-Figure2_Myxo_transitions.py:
-  - comment: "V??"
+Figure_2CDE.py:
+  - comment: "V?? : Loads dataframe files with all features for all experiments and computes the transitions between classes."
   - inputs:
-    - exp_WT : ['exp6','exp8','exp9','exp50','exp66']
-      defaults : ['exp6','exp8','exp9','exp50','exp66']
-    - exp_aS : ['exp11','exp54','exp55']
-      defaults: ['exp11','exp54','exp55']
+    - exp_WT : ['exp6','exp8','exp9','exp50','exp66','exp70']
+      defaults : ['exp6','exp8','exp9','exp50','exp66','exp70']
+    - exp_aS : ['exp11','exp54','exp55','exp72']
+      defaults: ['exp11','exp54','exp55','exp72']
     - exp_As : ['exp12','exp51','exp53','exp71']
       defaults: ['exp12','exp51','exp53','exp71']
     - density_min: 0
@@ -218,11 +218,11 @@ Figure2_Myxo_transitions.py:
       defaults: 5880
   - outputs: None
 
-Figure3_load_and_analyse_tracks_datashader_maps_v20220131.py:
-  - comment: "20220131"
+Figure_4BCD.py:
+  - comment: "20220131 : Loads datashader maps generated for one set of experiment with Figure3_generate_tracks_datashader_maps_v20220207.py and computes similarity measures."
   - inputs:
-    - experiments: ['exp6','exp8','exp9','exp50','exp66']
-      defaults:  ['exp6','exp8','exp9','exp50','exp66'] #['exp11','exp54','exp55'] # ['exp12','exp51','exp53', 'exp71']
+    - experiments: ['exp6','exp8','exp9','exp50','exp66','exp70']
+      defaults:  ['exp6','exp8','exp9','exp50','exp66','exp70'] #['exp11','exp54','exp55','exp72'] # ['exp12','exp51','exp53','exp71']
     - experiment : exp8
       defaults: exp8
     - xstart : 2800
@@ -230,21 +230,21 @@ Figure3_load_and_analyse_tracks_datashader_maps_v20220131.py:
     - Zoom_Width : 1000
   - outputs: None
   
-Figure3_Load_all_Similarity.py:
-  - comment: "V??"
+Figure_4E.py:
+  - comment: "V?? : Loads datashader maps generated with Figure3_generate_tracks_datashader_maps_v20220207.py and computes similarity measures."
   - inputs:
-    - exp_WT : ['exp6','exp8','exp9','exp50','exp66']
-      defaults : ['exp6','exp8','exp9','exp50','exp66']
-    - exp_aS : ['exp11','exp54','exp55']
-      defaults: ['exp11','exp54','exp55']
+    - exp_WT : ['exp6','exp8','exp9','exp50','exp66','exp70']
+      defaults : ['exp6','exp8','exp9','exp50','exp66','exp70']
+    - exp_aS : ['exp11','exp54','exp55','exp72']
+      defaults: ['exp11','exp54','exp55','exp72']
     - exp_As : ['exp12','exp51','exp53','exp71']
       defaults: ['exp12','exp51','exp53','exp71']
   - outputs: None
   
-Figure3_generate_tracks_datashader_maps_v20220207.py:
-  - comment: "V20220207"
+Figure_1GJ_4BCDFGH.py:
+  - comment: "V20220207 : Loads dataframe file with all features for one experiment and computes the 2D density histograms of trajectories using datashader. Export those maps."
   - inputs:
-    - experiment: exp8
+    - experiments: ['exp6','exp8','exp9','exp50','exp66','exp70','exp11','exp54','exp55','exp72','exp12','exp51','exp53','exp71']
       defaults: exp8
     - speed_min: 0
       defaults: 0
@@ -265,10 +265,10 @@ Figure3_generate_tracks_datashader_maps_v20220207.py:
     - plot_height: 5880
       defaults: 5880
   - outputs: 
-    - SaveResults : False
+    - SaveResults : True
 
-Figure4_EC_killing_process.py:
-  - comment: "V???"
+Figure_5EFG_preprocess.py:
+  - comment: "V??? : Loads raw fluorescence images and extract the fluorescence intensity vs time."
   - inputs:
     - experiment: exp9
       defaults: exp9
@@ -280,8 +280,8 @@ Figure4_EC_killing_process.py:
       defaults: 4
   - outputs: None
 
-Figure4_EC_killing_load.py:
-  - comment: "V???"
+Figure_5EFG.py:
+  - comment: "V??? : Loads Kymograph fluorescence intensities and fit intensity profiles with exponentials."
   - inputs:
     - experiment: exp9
       defaults: exp9
