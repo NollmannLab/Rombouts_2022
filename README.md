@@ -2,17 +2,9 @@
 
 This software package implements bacterial cell segmentation and tracking in crowded environments.
 
-
-
-## Documentation
-
-A full documentation can be found [here]().
-
-
-
 ## Data
 
-Example datasets can be obtained from Zenodo [here](). 
+Example datasets can be obtained from the Open Science Framework project [bacto_tracker](https://osf.io/2xufn/). 
 
 After running Steps 1-4 in your raw datasets, you will obtain a directory structure as follows:
 
