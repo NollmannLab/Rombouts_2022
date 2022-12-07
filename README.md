@@ -4,7 +4,7 @@ This software package implements bacterial cell segmentation and tracking in cro
 
 ## Data
 
-Example datasets can be obtained from the Open Science Framework project [bacto_tracker](https://osf.io/2xufn/). 
+Example datasets can be obtained from the Open Science Framework project [bacto_tracker](https://osf.io/ux4h9/). 
 
 After running Steps 1-4 in your raw datasets, you will obtain a directory structure as follows:
 
