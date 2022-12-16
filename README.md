@@ -1,6 +1,6 @@
 # bacto_tracker
 
-This software package implements bacterial cell segmentation and tracking in crowded environments.
+This software package implements bacterial cell segmentation and tracking in crowded environments. The package has been tested on MATLAB 2019a.
 
 ## Data
 
